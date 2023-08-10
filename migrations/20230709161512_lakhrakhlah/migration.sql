@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Post" ALTER COLUMN "updatedAt" DROP NOT NULL,
+ALTER COLUMN "comments" DROP NOT NULL,
+ALTER COLUMN "likes" DROP NOT NULL;

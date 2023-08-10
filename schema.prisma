@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DB_URL")
+}
+
+
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String?  @unique
+  name  String?
+  password  String?
+  posts Post[]
+  profile Profile?
+  story Story[]
+  comment Comment[]
+  testingId String?
+  imageUrl  String?
+  like   Like[]
+  notification Notification[]
+  followers  Followers[]
+  following  Following[]
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime? @updatedAt
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+  likes Int? @default(0)
+  comment Comment[]
+  like   Like[]
+  notification Notification[]
+}
+
+
+model Story {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+  views     Int?     @default(0)
+  content   String
+  like   Like[]
+  
+}
+
+
+model Comment {
+id        Int      @id @default(autoincrement())
+content   String
+createdAt DateTime @default(now())
+author    User    @relation(fields: [authorId], references: [id])
+authorId  Int
+post    Post    @relation(fields: [postId], references: [id])
+postId Int
+like   Like[]
+}
+
+model Like {
+  id     Int  @id @default(autoincrement())
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  posts    Post?    @relation(fields: [postId], references: [id])
+  postId  Int?
+  story    Story?    @relation(fields: [storyId], references: [id])
+  storyId  Int?
+  comment    Comment?    @relation(fields: [commentId], references: [id])
+  commentId  Int?
+  likeNumber Int?
+
+}
+
+model Notification {
+  id     Int  @id @default(autoincrement())
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  posts    Post?    @relation(fields: [postId], references: [id])
+  postId  Int?
+  authorreceptionId Int?
+  isLiked Boolean? @default(true)
+  isComent Boolean? @default(true)
+  isFollow Boolean? @default(true)
+  createdAt DateTime @default(now())
+
+}
+
+model Followers {
+  id     Int  @id @default(autoincrement())
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  followId Int?
+  name String?
+  avatar String?
+  checkFollow Boolean @default(true)
+
+}
+
+
+model Following {
+  id     Int  @id @default(autoincrement())
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  followId Int?
+  name String?
+  avatar String?
+
+} 
+
+
+  

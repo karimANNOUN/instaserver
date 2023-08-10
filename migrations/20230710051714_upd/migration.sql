@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "email" DROP NOT NULL,
+ALTER COLUMN "testingId" DROP NOT NULL;
