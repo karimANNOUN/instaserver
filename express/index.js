@@ -51,7 +51,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'karim_data',
   password: 'koukou2017',
-  port: 5432, // Change the port if necessary
+  port: 5432, 
 });
 
 app.use(
