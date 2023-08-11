@@ -9,7 +9,6 @@ const session = require('express-session');
 const passport = require('passport');
 
 const LocalStrategy = require('passport-local');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
 const pgSession = require('connect-pg-simple')(session);
