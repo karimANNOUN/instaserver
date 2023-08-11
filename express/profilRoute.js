@@ -13,12 +13,12 @@ const prisma = new PrismaClient();
 const upload = multer({ storage:storage })
 
 
-router.post('/createImage',isAuth.isAuth ,upload.single('file'),catchAsync(profil.creatImage))
+router.post('/createImage' ,upload.single('file'),catchAsync(profil.creatImage))
 
 
 
-  router.post('/createBio',isAuth.isAuth,catchAsync(profil.createBio))
-  router.get('/getbio',isAuth.isAuth,catchAsync(profil.getBio))
+  router.post('/createBio',catchAsync(profil.createBio))
+  router.get('/getbio',catchAsync(profil.getBio))
 
 
 

@@ -9,7 +9,7 @@ const catchAsync=require('./utils/catchAsync');
 
 const prisma = new PrismaClient();
 
-router.get('/notifications',isAuth.isAuth,catchAsync(notification.notifications))
+router.get('/notifications',catchAsync(notification.notifications))
 
 
 

@@ -13,22 +13,22 @@ const prisma = new PrismaClient();
 const upload = multer({ storage:storage })
 
 
-  router.post('/createpost',isAuth.isAuth ,upload.single('file'),catchAsync(posts.creatPosts));
+  router.post('/createpost' ,upload.single('file'),catchAsync(posts.creatPosts));
 
 
-   router.get('/allposts',isAuth.isAuth,catchAsync(posts.allPosts));
+   router.get('/allposts',catchAsync(posts.allPosts));
 
 
-  router.delete('/deletepost',isAuth.isAuth,catchAsync(posts.deletePosts));
+  router.delete('/deletepost',catchAsync(posts.deletePosts));
 
 
-  router.get('/postuser',isAuth.isAuth,catchAsync(posts.postUser))
+  router.get('/postuser',catchAsync(posts.postUser))
 
 
 
-  router.get('/p/:postId',isAuth.isAuth,catchAsync(posts.getPostId))
+  router.get('/p/:postId',catchAsync(posts.getPostId))
   
-   router.get('/profil/:personelId',isAuth.isAuth,catchAsync(posts.profilPersonelId))
+   router.get('/profil/:personelId',catchAsync(posts.profilPersonelId))
 
 
 

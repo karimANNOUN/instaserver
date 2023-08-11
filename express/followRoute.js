@@ -10,13 +10,13 @@ const catchAsync=require('./utils/catchAsync');
 const prisma = new PrismaClient();
 
 
-router.post('/followers',isAuth.isAuth,catchAsync(follow.followers))
+router.post('/followers',catchAsync(follow.followers))
 
 
-  router.delete('/followersdelete',isAuth.isAuth,catchAsync(follow.deleteFollowers))
+  router.delete('/followersdelete',catchAsync(follow.deleteFollowers))
 
 
-  router.get('/followuser',isAuth.isAuth,catchAsync(follow.followUser))
+  router.get('/followuser',catchAsync(follow.followUser))
 
 
 

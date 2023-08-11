@@ -14,14 +14,14 @@ const upload = multer({ storage:storage })
 
 
 
-router.post('/likes',isAuth.isAuth,catchAsync(like.like))
+router.post('/likes',catchAsync(like.like))
    
 
-    router.delete('/deletelike',isAuth.isAuth,catchAsync(like.deleteLike))
+    router.delete('/deletelike',catchAsync(like.deleteLike))
 
 
 
-    router.get('/likenumber',isAuth.isAuth,catchAsync(like.likeNumber))
+    router.get('/likenumber',catchAsync(like.likeNumber))
 
 
 

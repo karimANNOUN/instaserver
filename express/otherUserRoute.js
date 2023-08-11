@@ -14,10 +14,10 @@ const prisma = new PrismaClient();
 const upload = multer({ storage:storage })
 
 
-router.get('/getuser',isAuth.isAuth,catchAsync(otherUser.getUser))
+router.get('/getuser',catchAsync(otherUser.getUser))
 
 
-  router.get('/personelusers/:id',isAuth.isAuth,catchAsync(otherUser.personelUserId))
+  router.get('/personelusers/:id',catchAsync(otherUser.personelUserId))
 
 
 

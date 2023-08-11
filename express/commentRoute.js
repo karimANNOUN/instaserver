@@ -13,15 +13,15 @@ const prisma = new PrismaClient();
 const upload = multer({ storage:storage })
 
 
-router.post('/createComment',isAuth.isAuth,catchAsync(comment.creatComment))
+router.post('/createComment',catchAsync(comment.creatComment))
 
 
-  router.get('/getcoments/:postsId',isAuth.isAuth,catchAsync(comment.getCommentsId))
+  router.get('/getcoments/:postsId',catchAsync(comment.getCommentsId))
 
 
 
 
-  router.delete('/deletecomment',isAuth.isAuth,catchAsync(comment.deleteComment))
+  router.delete('/deletecomment',catchAsync(comment.deleteComment))
 
 
 
