@@ -11,10 +11,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
-const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
 
-const { Pool } = require('pg');
+
 const cors = require("cors");
 const userRoute=require('./auth')
 const postsRoute=require('./postsRouter')
@@ -46,20 +45,10 @@ app.use((req, res, next) => {
 const prisma = new PrismaClient();
 
 
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'karim_data',
-  password: 'koukou2017',
-  port: 5432, 
-});
+
 
 app.use(
   session({
-    store: new pgSession({
-      pool: pool,
-      tableName: 'session',
-    }),
     name:"newcokiees",
     secret: 'newsessionbro',
     resave: false,
