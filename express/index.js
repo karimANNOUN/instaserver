@@ -102,7 +102,7 @@ app.use(passport.session());
           
         } catch (error) {
           return done(error);
-        }
+        } 
       }
     )
   ); 
