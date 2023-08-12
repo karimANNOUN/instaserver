@@ -12,6 +12,7 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
 const cookieParser = require('cookie-parser');
+const path=require('path')
 
 
 const cors = require("cors");
@@ -33,7 +34,7 @@ app.use(cors({
   origin:`${process.env.REACT_APP_HOST}`,
   credentials:true
 }));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.REACT_APP_HOST}`);
@@ -68,27 +69,14 @@ app.use(
 
 
 
+
+
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-
-
-  passport.serializeUser((user, done) => {
-    done(null, user);
-   
-  });
-  
-  passport.deserializeUser((user, done) => {
-   
-      done(null, user);
-  
-  })
-
-
- 
 
   passport.use(
     new LocalStrategy(
@@ -100,7 +88,7 @@ app.use(passport.session());
         try {
           const user = await prisma.User.findUnique({ where: { email } });
   
-          if (!user) {
+          if (!user) { 
             return done(null, false, { message: 'Invalid email or password' });
           }
   
@@ -117,11 +105,21 @@ app.use(passport.session());
         }
       }
     )
-  );
+  ); 
+
 
   
+  passport.serializeUser((user, done) => {
+    done(null, user);
+   
+  });
   
+  passport.deserializeUser((user, done) => {
+   
+      done(null, user);
   
+  })
+
 
 
 
