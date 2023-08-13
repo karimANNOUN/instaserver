@@ -55,7 +55,7 @@ app.use(
     store: new pgSession({
       pool: new Pool({
         connectionString:(`${process.env.DB_URL}`),
-        host:'https://instaprojectnew.netlify.app'
+        host:'https://successful-outerwear-ray.cyclic.app'
       
     }) // Your PostgreSQL pool
   }),
