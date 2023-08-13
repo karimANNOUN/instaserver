@@ -15,6 +15,7 @@ const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
 const cookieParser = require('cookie-parser');
 const path=require('path')
+const MongoStore = require('connect-mongo');
 
 
 const cors = require("cors");
@@ -52,23 +53,22 @@ const prisma = new PrismaClient();
 
 app.use(
   session({
-    store: new pgSession({
-      pool: new Pool({
-        connectionString:(`${process.env.DB_URL}`),
-      
-    }) 
-  }),
+    store: MongoStore.create({ 
+      mongoUrl:`${process.env.DB_URLMONGO}`,
+      secret:`${process.env.SECRET_SESSION}`,
+      // touchAfter: 24 * 3600 
+      // using mongo for your session store
+    }),// using mongo
+
     name:"newcokiees",
-    secret: 'newsessionbro',
+    secret: `${process.env.SECRET_SESSION}`,
     resave: false,
     saveUninitialized:false,
     cookie:{  
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
     //  sameSite:'none',
-    secure: true, 
-    httpOnly: true,     // Prevent client-side JavaScript access
-    sameSite: 'none',
+  
     //  httpOnly: false, 
       
       }
