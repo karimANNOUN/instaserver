@@ -65,6 +65,7 @@ app.use(
     cookie:{  
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
+      path:'/personel'
      
      // httpOnly: true, 
      // secure: true, 
