@@ -65,10 +65,12 @@ app.use(
     cookie:{  
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
-      sameSite:false
-      
+    //  sameSite:'none',
+    secure: true, 
+    httpOnly: true,     // Prevent client-side JavaScript access
+    sameSite: 'none',
     //  httpOnly: false, 
-    //  secure: true, 
+      
       }
   })
 )
