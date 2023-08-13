@@ -56,7 +56,7 @@ module.exports.loginFaild= async (req,res)=>{
             return next(err);
           }
        
-          return res.json({ user: newUser }); 
+          return res.json({ user: req.user }); 
         });
       } catch (error) {
         return next(error);
