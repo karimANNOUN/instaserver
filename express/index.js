@@ -56,7 +56,7 @@ app.use(
       pool: new Pool({
         connectionString:(`${process.env.DB_URL}`),
       
-    }) // Your PostgreSQL pool
+    }) 
   }),
     name:"newcokiees",
     secret: 'newsessionbro',
@@ -65,6 +65,7 @@ app.use(
     cookie:{  
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
+      sameSite:'none'
      // httpOnly: true, 
      // secure: true, 
       }
