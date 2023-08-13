@@ -6,6 +6,8 @@ if(process.env.NODE_ENV !== "production"){
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const { Pool } = require('pg');
 const passport = require('passport');
 
 const LocalStrategy = require('passport-local');
@@ -50,6 +52,12 @@ const prisma = new PrismaClient();
 
 app.use(
   session({
+    store: new pgSession({
+      pool: new Pool({
+        connectionString:(`${process.env.DB_URL}`),
+      
+    }) // Your PostgreSQL pool
+  }),
     name:"newcokiees",
     secret: 'newsessionbro',
     resave: false,
