@@ -40,15 +40,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.REACT_APP_HOST}`);
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Methods", "DELETE","POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader('Access-Control-Allow-Credentials', true)
   next();
 })
 
 const prisma = new PrismaClient();
 
 
-
+app.set("trust proxy", 1)
 
 app.use(
   session({
@@ -62,11 +63,13 @@ app.use(
     secret: `${process.env.SECRET_SESSION}`,
     resave: false,
     saveUninitialized:false,
+    proxy:true,
     cookie:{  
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
-    //  sameSite:'none',
-  
+      secure:true,
+      sameSite:'none',
+      
     //  httpOnly: false, 
       
       }
