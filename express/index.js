@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 const prisma = new PrismaClient();
 
 
-app.set("trust proxy", 1)
+app.set("trust proxy", 2)
 
 app.use(
   session({
