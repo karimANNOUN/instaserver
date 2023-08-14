@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.REACT_APP_HOST}`);
-  res.setHeader("Access-Control-Allow-Methods", "DELETE","POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Methods", "DELETE,POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader('Access-Control-Allow-Credentials', true)
   next();
@@ -68,6 +68,7 @@ app.use(
       expires:Date.now() + 1000 * 60 * 60 * 24 * 7 ,
       maxAge: 1000 * 60 * 60 * 24 * 7 ,
       secure:true,
+      httpOnly: true,
       sameSite:'none',
       
     //  httpOnly: false, 
