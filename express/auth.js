@@ -4,7 +4,6 @@ const passport = require('passport');
 
 const { PrismaClient } = require('@prisma/client');
 const multer = require('multer');
-const {storage}= require('./uploads/cloudinary')
 const  isAuth  = require('./utils/passport');
 const catchAsync=require('./utils/catchAsync');
 const authControllers=require('./service/auth')
