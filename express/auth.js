@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const bcrypt = require('bcryptjs');
+
 const { PrismaClient } = require('@prisma/client');
 const multer = require('multer');
 const {storage}= require('./uploads/cloudinary')
