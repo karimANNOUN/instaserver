@@ -26,7 +26,7 @@ router.post('/login', passport.authenticate('local'), catchAsync(authControllers
 router.get('/user',catchAsync(authControllers.user));
  
  
- //router.post('/', isLogedIn,validateCampground, catchAsync(campgrounds.createCampground));
+
 
  
  //router.get('/:id',catchAsync(campgrounds.showCampground));
